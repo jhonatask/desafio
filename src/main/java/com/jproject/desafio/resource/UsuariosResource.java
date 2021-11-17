@@ -9,7 +9,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
 
-@Path("/login")
+@Path("/usuarios")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class UsuariosResource {
@@ -17,7 +17,7 @@ public class UsuariosResource {
     @GET
     public List<Usuarios> findUsers(){
         Usuarios usuarios = new Usuarios();
-        return usuarios.findUser();
+        return usuarios.findUsu();
     }
 
 }

@@ -1,10 +1,13 @@
 package com.jproject.desafio.model;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
+
 
 
 @Entity
@@ -18,11 +21,12 @@ public class Usuarios extends PanacheEntityBase implements Serializable {
     private Long usu_id;
     private String usu_login;
     private String usu_pwd;
-    private String usu_dtcadastro;
-    private String usu_dtexpiracao;
+    private LocalDate usu_dtcadastro;
+    private LocalDate  usu_dtexpiracao;
 
     @OneToOne
-    @JoinColumn(name = "alun_id",foreignKey = @ForeignKey(name = "FK_IDPESSOA"))
+    @JoinColumn(name = "alun_id", referencedColumnName = "alun_id")
+    @JsonBackReference
     PessoaFisica pessoaFisica;
 
     public Usuarios() {
@@ -60,19 +64,19 @@ public class Usuarios extends PanacheEntityBase implements Serializable {
         this.usu_pwd = usu_pwd;
     }
 
-    public String getUsu_dtcadastro() {
+    public LocalDate  getUsu_dtcadastro() {
         return usu_dtcadastro;
     }
 
-    public void setUsu_dtcadastro(String usu_dtcadstro) {
+    public void setUsu_dtcadastro(LocalDate  usu_dtcadstro) {
         this.usu_dtcadastro = usu_dtcadstro;
     }
 
-    public String getUsu_dtexpiracao() {
+    public LocalDate  getUsu_dtexpiracao() {
         return usu_dtexpiracao;
     }
 
-    public void setUsu_dtexpiracao(String usu_dtexpiracao) {
+    public void setUsu_dtexpiracao(LocalDate  usu_dtexpiracao) {
         this.usu_dtexpiracao = usu_dtexpiracao;
     }
 
@@ -89,9 +93,12 @@ public class Usuarios extends PanacheEntityBase implements Serializable {
         return Objects.hash(usu_id);
     }
 
-    public List<Usuarios> findUser(){
-        return listAll();
-    }
+     public List<Usuarios> findUsu(){
+        return  listAll();
+     }
+
+
+
 
 
 }
