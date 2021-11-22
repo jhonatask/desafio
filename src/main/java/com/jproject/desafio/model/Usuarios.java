@@ -29,6 +29,7 @@ public class Usuarios extends PanacheEntityBase implements Serializable {
     @JsonBackReference
     PessoaFisica pessoaFisica;
 
+
     public Usuarios() {
     }
 

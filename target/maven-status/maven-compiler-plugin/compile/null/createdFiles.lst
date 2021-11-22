@@ -1,2 +1,3 @@
-com\jproject\desafio\service\LoginService.class
+com\jproject\desafio\model\Matricula.class
 com\jproject\desafio\resource\LoginResource.class
+com\jproject\desafio\service\LoginService.class

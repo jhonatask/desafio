@@ -2,12 +2,12 @@ package com.jproject.desafio.model;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
+
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -31,6 +31,11 @@ public class PessoaFisica extends PanacheEntityBase implements Serializable {
     @OneToOne(fetch = FetchType.LAZY, mappedBy = "pessoaFisica")
     @JsonManagedReference
     Usuarios usuarios;
+
+    @OneToMany
+    @JsonManagedReference
+    private List<Matricula> matriculas;
+
 
     public PessoaFisica() {
     }
@@ -97,6 +102,15 @@ public class PessoaFisica extends PanacheEntityBase implements Serializable {
 
     public void setAlun_telefone2(String alun_telefone2) {
         this.alun_telefone2 = alun_telefone2;
+    }
+
+    public List<Matricula> getMatriculas() {
+        return matriculas;
+    }
+
+    public PessoaFisica setMatriculas(List<Matricula> matriculas) {
+        this.matriculas = matriculas;
+        return this;
     }
 
     @Override
@@ -178,6 +192,5 @@ public class PessoaFisica extends PanacheEntityBase implements Serializable {
 
         return find("alun_cpf", alun_cpf).firstResultOptional();
     }
-
 
 }
